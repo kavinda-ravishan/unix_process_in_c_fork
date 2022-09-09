@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.2)
+project(app)
+set(CMAKE_BUILD_TYPE Debug)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+add_executable(${PROJECT_NAME} src/main.cpp)
