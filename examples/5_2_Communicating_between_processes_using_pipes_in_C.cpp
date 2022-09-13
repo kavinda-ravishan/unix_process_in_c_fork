@@ -18,9 +18,10 @@ int main(int argc, char* argv[])
     if(id == 0)
     {
         std::vector<int> vec;
-        vec.push_back(1);
-        vec.push_back(2);
-        vec.push_back(3);
+        vec.push_back(11);
+        vec.push_back(22);
+        vec.push_back(33);
+        vec.push_back(44);
 
         const int size = vec.size();
 
@@ -29,7 +30,7 @@ int main(int argc, char* argv[])
         close(fd_vec_size[1]);
 
         close(fd_vec[0]); // close read end
-        write(fd_vec[1], &*vec.begin(), vec.size()*sizeof(int));
+        write(fd_vec[1], vec.data(), vec.size()*sizeof(int));
         close(fd_vec[1]); // close write end
     }
     else
@@ -45,7 +46,7 @@ int main(int argc, char* argv[])
         std::vector<int> vec(size);
 
         close(fd_vec[1]); // close write end
-        read(fd_vec[0], &*vec.begin(), sizeof(int)*3); 
+        read(fd_vec[0], vec.data(), sizeof(int)*size); 
         close(fd_vec[0]); // close read end
 
         for(auto i : vec)
