@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
         return 2;
     }
 
-    if(id == 0)
+    if(id != 0) // chilled
     {
         close(fd[0]); // close the read end
         int x;
@@ -36,8 +36,9 @@ int main(int argc, char* argv[])
         }
         close(fd[1]); // close the write end
     }
-    else
+    else // parent
     {
+        wait(NULL);
         close(fd[1]);
         int y;
         if(read(fd[0], &y, sizeof(int)) == -1)
